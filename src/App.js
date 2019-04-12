@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Layout, Header, Navigation, Drawer, Content} from 'react-mdl';
+import {Layout, Header, Navigation, Drawer, Content, List, ListItem} from 'react-mdl';
 import {Link} from 'react-router-dom';
 import './App.css';
 import Routes from './components/Routes';
@@ -8,18 +8,21 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            isVisible: false,
+            reportListToggle: false,
+            listDisplay: "none",
         }
-        this.accordionToggle = this.accordionToggle.bind(this);
     }
 
-    accordionToggle() {
-        this.setState(prevState => {
-            return {
-                isVisible: !prevState.isVisible,
-            }
-        });
-    }
+    listToggle = () => {
+        this.setState({listToggle: !this.state.listToggle});
+
+        if(this.state.listToggle == true) {
+          this.state.listDisplay = "inline-block";
+        }
+        else {
+            this.state.listDisplay = "none";
+        }
+    };
 
     render() {
         return (
@@ -37,18 +40,12 @@ class App extends Component {
                             <Link to="/Home">Home</Link>
                             <Link to="/About">About</Link>
                             <Link to="/Account">Account</Link>
-                            {/*<Link to="#" className="accordion" onClick={this.accordionToggle}>Reports</Link>*/}
-                            {/*{this.state.isVisible ?*/}
-                                {/*<ul className="toggleList" style={{marginLeft: "30px"}}>*/}
-                                    {/*<li>*/}
-                                        {/*<Link to="/Reports">Reports</Link>*/}
-                                    {/*</li>*/}
-                                    {/*<li>*/}
-                                        {/*<Link to="/StudentReport">Student Report</Link>*/}
-                                    {/*</li>*/}
-                                {/*</ul>*/}
-                                {/*: null*/}
-                            {/*}*/}
+                            <Link onClick={this.listToggle} to="#">Reports</Link>
+                              <List style={{display: this.state.listDisplay}}>
+                                  <ListItem><Link to="#">Test 1</Link></ListItem>
+                                  <ListItem><Link to="#">Test 2</Link></ListItem>
+                                  <ListItem><Link to="#">Test 3</Link></ListItem>
+                              </List>
                         </Navigation>
                     </Drawer>
                     <Content>

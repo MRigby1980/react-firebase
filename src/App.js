@@ -42,7 +42,7 @@ class App extends Component {
                             <Link to="/Account">Account</Link>
                             <Link onClick={this.listToggle} to="#">Reports</Link>
                               <List style={{display: this.state.listDisplay}}>
-                                  <ListItem><Link to="#">Test 1</Link></ListItem>
+                                  <ListItem><Link to="/TestReport1">Test Report 1</Link></ListItem>
                                   <ListItem><Link to="#">Test 2</Link></ListItem>
                                   <ListItem><Link to="#">Test 3</Link></ListItem>
                               </List>
